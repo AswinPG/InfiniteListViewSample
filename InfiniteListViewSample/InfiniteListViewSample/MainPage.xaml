@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="InfiniteListViewSample.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+    mc:Ignorable="d">
+
+    <ListView x:Name="MainListView">
+        <ListView.Behaviors>
+            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsWorking}" />
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Padding="1,1,1,15" Orientation="Vertical">
+                        <Frame Padding="18,8,18,10" HasShadow="True">
+                            <StackLayout>
+                                <Frame
+                                    Padding="3,1,3,1"
+                                    BackgroundColor="HotPink"
+                                    HorizontalOptions="StartAndExpand">
+                                    <Label
+                                        FontSize="Small"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Tag}" />
+                                </Frame>
+
+                                <Label
+                                    Margin="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding Heading}"
+                                    TextColor="Black" />
+                                <StackLayout
+                                    Padding="0,5,0,5"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+                                    <Image
+                                        HeightRequest="40"
+                                        Source="{Binding ImgUrl}"
+                                        WidthRequest="40" />
+                                    <StackLayout WidthRequest="20" />
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            FontAttributes="None"
+                                            FontSize="Micro"
+                                            Text="{Binding PostedOn}" />
+                                    </StackLayout>
+
+                                </StackLayout>
+                                <Label
+                                    Margin="2"
+                                    FontSize="Medium"
+                                    Text="{Binding Description}" />
+                                <StackLayout
+                                    Padding="0"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand" />
+                                <StackLayout Padding="5" Orientation="Horizontal">
+                                    <ImageButton
+                                        Padding="2"
+                                        Aspect="Fill"
+                                        BackgroundColor="Transparent"
+                                        Clicked="ReplyButtonClicked"
+                                        HeightRequest="25"
+                                        HorizontalOptions="Start"
+                                        Source="chat.png"
+                                        WidthRequest="25" />
+                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                        <ImageButton
+                                            Padding="2"
+                                            Aspect="Fill"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="22"
+                                            Source="Pin.png"
+                                            WidthRequest="22" />
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+</ContentPage>
