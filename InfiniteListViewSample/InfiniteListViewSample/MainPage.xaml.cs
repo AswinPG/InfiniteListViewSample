@@ -30,6 +30,7 @@ namespace InfiniteListViewSample
 
                     // return the items that need to be added
                     return items;
+                    //njkjk
                 }
             };
 
