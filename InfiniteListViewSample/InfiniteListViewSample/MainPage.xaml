@@ -4,13 +4,22 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:InfiniteListViewSample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+    Padding="8"
     mc:Ignorable="d">
 
-    <ListView x:Name="MainListView">
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        x:Name="MainListView"
+        HasUnevenRows="True"
+        ItemsSource="{Binding Items}">
         <ListView.Behaviors>
-            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsWorking}" />
+            <scroll:InfiniteScrollBehavior IsLoadingMore="True" />
         </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate>
@@ -70,7 +79,6 @@
                                         Padding="2"
                                         Aspect="Fill"
                                         BackgroundColor="Transparent"
-                                        Clicked="ReplyButtonClicked"
                                         HeightRequest="25"
                                         HorizontalOptions="Start"
                                         Source="chat.png"
@@ -92,7 +100,21 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-
+        <ListView.Footer>
+            <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                <!--  set the footer to have a zero height when invisible  -->
+                <!--<Grid.Triggers>
+                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                        <Setter Property="HeightRequest" Value="0" />
+                    </Trigger>
+                </Grid.Triggers>-->
+                <!--  the loading content  -->
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Loading..."
+                    VerticalOptions="Center" />
+            </Grid>
+        </ListView.Footer>
     </ListView>
 
 </ContentPage>

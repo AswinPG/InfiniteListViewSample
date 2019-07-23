@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,14 @@ namespace InfiniteListViewSample
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-
-        private const int PageSize = 20;
         public MainPage()
         {
             InitializeComponent();
-
-            Items = new InfiniteScrollCollection<ForumData>
-            {
-                OnLoadMore = async () =>
-                {
-                    // load the next page
-                    var page = Items.Count / PageSize;
-                    var items = await dataSource.GetItemsAsync(page + 1, PageSize);
-
-                    // return the items that need to be added
-                    return items;
-                    //njkjk
-                }
-            };
-
+            //MainListView.ItemsSource = Items;
         }
-        public InfiniteScrollCollection<ForumData> Items { get; }
+        //public InfiniteScrollCollection<ForumData> Items { get; }
     }
+
 }
+
+    
