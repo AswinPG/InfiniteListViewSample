@@ -34,7 +34,9 @@ namespace InfiniteListViewSample
                 },
                 OnCanLoadMore = () =>
                 {
-                    return Items.Count < 40;
+                    int testvar2 = dataService.GetCountAsync();
+                    int testvar = Items.Count;
+                    return Items.Count != 35;
                 }
             };
             
@@ -441,7 +443,7 @@ namespace InfiniteListViewSample
                 },
                 new ForumData()
                 {
-                    Name="Aswin",
+                    Name="vsdvsdv",
                     Description="GSLV-F11 successfully launched GSAT-7A, ISRO's 39th communication satellite",
                     Heading="How many Satelllites did GSLV carry in it's last launch?",
                     ImgUrl="man.png",
@@ -450,7 +452,7 @@ namespace InfiniteListViewSample
                 },
                 new ForumData()
                 {
-                    Name="Avinash",
+                    Name="vsvsdv",
                     Description="I came to know that his death was not obvious and there was some mystery surrounding it.",
                     Heading="What is the contreversy regarding the death of Netaji Subash Chandra Bose? Please clarify",
                     ImgUrl="man.png",
@@ -459,7 +461,7 @@ namespace InfiniteListViewSample
                 },
                 new ForumData()
                 {
-                    Name="Navaneeth",
+                    Name="vdvsvsvsd",
                     Description="GSLV-F11 successfully launched GSAT-7A, ISRO's 39th communication satellite",
                     Heading="How many Satelllites did GSLV carry in it's last launch?",
                     ImgUrl="man.png",
@@ -468,7 +470,7 @@ namespace InfiniteListViewSample
                 },
                 new ForumData()
                 {
-                    Name="Naveen",
+                    Name="aswffgdffsdvsdvsdvsv",
                     Description="GSLV-F11 successfully launched GSAT-7A, ISRO's 39th communication satellite",
                     Heading="How many Satelllites did GSLV carry in it's last launch?",
                     ImgUrl="man.png",
@@ -477,7 +479,7 @@ namespace InfiniteListViewSample
                 },
                 new ForumData()
                 {
-                    Name="Avinash",
+                    Name="nottaken",
                     Description="GSLV-F11 successfully launched GSAT-7A, ISRO's 39th communication satellite",
                     Heading="How many Satelllites did GSLV carry in it's last launch?",
                     ImgUrl="man.png",
@@ -486,10 +488,17 @@ namespace InfiniteListViewSample
                 }
             };
 
+
+        
         public async Task<List<ForumData>> GetForumDataAsync(int pageindex, int pagesize)
         {
             await Task.Delay(2000);
             return MainListViewData.Skip(pageindex * pagesize).Take(pagesize).ToList();
+        }
+
+        public int GetCountAsync()
+        {
+            return MainListViewData.Count;
         }
     }
 }
